@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int a[100] , b[100];
+void mergesort(int low , int mid , int high){
+
+int n1 , n2 , i;
+for(n1=low,n2=mid+1,i=low;n1<=mid&&n2<=high;i++){
+
+    if(a[n1] <= a[n2])b[i]=a[n1++];
+    else b[i]=a[n2++];
+
+}
+
+while(n1<=mid)b[i++]=a[n1++];
+while(n2<=high)b[i++]=a[n2++];
+
+for(i=low ; i<=high ; i++)a[i]=b[i];
+
+}
+
+
+void sortt(int low , int high){
+
+int mid;
+
+if(low < high){
+
+    mid=(low+high)/2;
+    sortt(low,mid);
+    sortt(mid+1,high);
+    mergesort(low , mid , high);
+
+}
+else return;
+
+}
+
+
+int main()
+{
+
+
+    int n ;
+    cin >> n ;
+    for(int i=0;i<n;i++)cin >> a[i];
+
+     sortt(0 , n-1);
+
+     for(int i=0 ; i<n ; i++)cout<<a[i]<<" ";
+
+
+    return 0;
+}
